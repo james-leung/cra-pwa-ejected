@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function App() {
   const [name, setName] = useState("James");
-
-  useEffect(() => {
-    console.log("Adding push event listener to simple page.");
-    window.addEventListener("push", (e: any) => {
-      console.log(e);
-      console.log("Push event.");
-    });
-  }, []);
 
   const storeSubscription = async () => {
     try {
@@ -30,7 +22,7 @@ function App() {
     try {
       const res = await axios.post("https://localhost:44325/notify", {
         client: name,
-        message: "Hello, here's a push notification.",
+        message: "Hello, here's a push notification....",
       });
       console.log(res);
     } catch (err) {
@@ -42,7 +34,7 @@ function App() {
     <>
       <p>Hello World!</p>
 
-      <h1>Subscribe to Push Notifications</h1>
+      <h1>Subscribe to Push Notifications!</h1>
       <input
         type="text"
         value={name}

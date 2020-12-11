@@ -98,7 +98,7 @@ self.addEventListener("push", (e) => {
     actions: [
       {
         action: "explore",
-        title: "Go interact with this!",
+        title: "Go interact with this!?",
         icon: "public/logo192.png",
       },
       {
@@ -116,6 +116,7 @@ self.addEventListener("notificationclick", function (event) {
   event.notification.close();
 
   console.log(event.notification.data);
+
   event.waitUntil(
     self.clients
       .matchAll({
@@ -124,13 +125,14 @@ self.addEventListener("notificationclick", function (event) {
       .then(function (clientList) {
         for (var i = 0; i < clientList.length; i++) {
           var client = clientList[i] as WindowClient;
-          client.navigate("www.google.com");
+          client.focus();
+          client.navigate("https://www.google.com");
+          self.clients.openWindow("");
+
           if (
-            client.url === "/" &&
             client.hasOwnProperty("navigate") &&
             client.hasOwnProperty("focus")
           ) {
-            client.navigate("www.google.com");
             return client.focus();
           }
         }

@@ -83,9 +83,9 @@ export function getSubscription(reg: ServiceWorkerRegistration) {
 }
 
 export function register(config?: Config) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-    console.log(`In production mode, service worker supported by browser`);
-    // if ("serviceWorker" in navigator) {
+  // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+  //   console.log(`In production mode, service worker supported by browser`);
+  if ("serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
